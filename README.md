@@ -1,1 +1,1 @@
-# tiny-ASCII-art-generator
+# tiny-convolution
