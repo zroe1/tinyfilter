@@ -4,29 +4,27 @@ import numpy as np
 LOAD_IMG_WIDTH = 82
 LOAD_IMG_HEIGHT  = 50
 
+
 BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype='int32')
 FORWARDSLASH_FILTER = np.array([[-1, -1, 3], [-1, 3, -1], [3, -1, -1]], dtype='int32')
 VERTICAL_BAR_FILTER = np.array([[-1, 3, -1], [-1, 3, -1], [-1, 3, -1]], dtype='int32')
-# L_FILTER = np.array([[3, -1, -1], [3, -1, -1], [3, 3, 3]], dtype='int32')
-HYPEN_FILTER = np.array([[-1, -1, -1],  [3, 3, 3], [-1, -1, -1]], dtype='int32')
-UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 3, 3]], dtype='int32')
-PLUS_FILTER = np.array([[-1, 3, -1], [3, 3, 3], [-1, 3, -1]], dtype='int32')
-L_FILTER = np.array([[-1, 3, 3], [-1, 3, 3], [-1, -1, -1]], dtype='int32')
+HYPEN_FILTER = np.array([[-1, -1, -1],  [3, 4, 3], [-1, -1, -1]], dtype='int32')
+UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 4, 3]], dtype='int32')
+
 
 FILTER_PAIRS = [
     (BACKSLASH_FILTER, '\\'),
     (FORWARDSLASH_FILTER, '/'),
     (VERTICAL_BAR_FILTER, '|'),
-    (L_FILTER, 'L'),
     (HYPEN_FILTER, '-'),
-    (UNDERSCORE_FILTER, '_'),
-    (PLUS_FILTER, '+')
+    (UNDERSCORE_FILTER, '_')
 ]
 
 # Loads image as 80 * 80 pixels and saves it in a numpy array
-img_raw = Image.open('example_image.png')
+img_raw = Image.open('mcdonalds.png')
 img_raw = img_raw.resize((LOAD_IMG_WIDTH, LOAD_IMG_HEIGHT))
 img = np.array(img_raw)
+print(img)
 
 # Removes alpha channel from an image if present
 if img_raw.mode == 'RGBA':
@@ -48,22 +46,19 @@ def print_filter_output(input_data, filter):
     multiplied_output = input_data * filter
     output = np.sum(multiplied_output)
 
-    printed = False
+    min_filer_output = 150
+    min_filer_string = ' '
 
     for filter_matrix, mapped_string in FILTER_PAIRS:
         multiplied_output = input_data * filter_matrix
         filter_output = np.sum(multiplied_output)
 
-        if filter_output < 100:
-            if not printed:
-                print(mapped_string, end='')
-                printed = True
-        # else:
-        #     print(" ", end='')
+        if filter_output < min_filer_output:
+            min_filer_output = filter_output
+            min_filer_string = mapped_string
 
-    if not printed:
-        print(" ", end='')
-    # print("-", end='')
+
+    print(min_filer_string, end='')
 
     # Checks that the output is within the range 0, 255 before returning
     if output > 255:
@@ -85,7 +80,7 @@ def apply_filters(img_original, img_output, filter):
             input_data = input_data[:,:,0:1]
             input_data = input_data.reshape((3,3))
 
-            intput_data = input_data.astype('int32')
+            # intput_data = input_data.astype('int32')
 
             # calculate the filter output
             filter_output = print_filter_output(input_data, filter)
@@ -97,13 +92,17 @@ np.apply_along_axis(change_to_gray_scale, axis=2, arr=img)
 img_output = np.zeros((48, 80, 3), dtype='uint8')
 
 print('*' * 80)
-apply_filters(img, img_output, UNDERSCORE_FILTER)
-# apply_filters(img, img_output, FORWARDSLASH_FILTER)
+# apply_filters(img, img_output, UNDERSCORE_FILTER)
+apply_filters(img, img_output, FORWARDSLASH_FILTER)
+# apply_filters(img, img_output, BACKSLASH_FILTER)
+
+
 # print(img_output)
 # print(img_output.shape)
 print('*' * 80)
 
-image = Image.fromarray(np.uint8(img_output))
+# image = Image.fromarray(np.uint8(img_output))
+image = Image.fromarray(np.uint8(img))
 
 # Save the image
 image.save('output_image.png')
