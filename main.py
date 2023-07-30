@@ -5,13 +5,14 @@ import shutil
 LOAD_IMG_WIDTH = shutil.get_terminal_size().columns + 2
 LOAD_IMG_HEIGHT  = int(LOAD_IMG_WIDTH * (5/8))
 
+# Filters applied to the image to detect features
 BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype='int32')
 FORWARDSLASH_FILTER = np.array([[-1, -1, 3], [-1, 3, -1], [3, -1, -1]], dtype='int32')
 VERTICAL_BAR_FILTER = np.array([[-1, 3, -1], [-1, 3, -1], [-1, 3, -1]], dtype='int32')
 HYPEN_FILTER = np.array([[-1, -1, -1],  [3, 4, 3], [-1, -1, -1]], dtype='int32')
 UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 4, 3]], dtype='int32')
 
-
+# Filters applied to image and their corresponding ASCII feature
 FILTER_PAIRS = [
     (BACKSLASH_FILTER, '\\'),
     (FORWARDSLASH_FILTER, '/'),
@@ -20,8 +21,7 @@ FILTER_PAIRS = [
     (UNDERSCORE_FILTER, '_')
 ]
 
-def change_to_gray_scale(pixel):
-    # Gets each color value for the pixel passed in
+def change_pixel_to_gray_scale(pixel):
     red = pixel[0]
     green = pixel[1]
     blue = pixel[2]
@@ -32,10 +32,11 @@ def change_to_gray_scale(pixel):
     # Change each color value in the pixel to the calculated greyscale value
     pixel[:] = int(gray_scale_value)
 
-def print_filter_output(input_data, filter):
+def print_filter_output(input_data):
     min_filer_output = 150
     min_filer_string = ' '
 
+    # Finds the filter that maps the best and saves it's conesponding character
     for filter_matrix, mapped_string in FILTER_PAIRS:
         multiplied_output = input_data * filter_matrix
         filter_output = np.sum(multiplied_output)
@@ -43,8 +44,7 @@ def print_filter_output(input_data, filter):
         if filter_output < min_filer_output:
             min_filer_output = filter_output
             min_filer_string = mapped_string
-
-
+    
     print(min_filer_string, end='')
 
 def print_img(img_original):
@@ -58,8 +58,7 @@ def print_img(img_original):
             input_data = input_data[:,:,0:1]
             input_data = input_data.reshape((3,3))
 
-            # print filter output
-            print_filter_output(input_data, filter)
+            print_filter_output(input_data)
 
 
 def main():
@@ -72,7 +71,8 @@ def main():
     if img_raw.mode == 'RGBA':
         img = img[:,:,0:3]
     
-    np.apply_along_axis(change_to_gray_scale, axis=2, arr=img)
+    # Changes image to grayscale
+    np.apply_along_axis(change_pixel_to_gray_scale, axis=2, arr=img)
 
     print('*' * shutil.get_terminal_size().columns)
     print_img(img)
