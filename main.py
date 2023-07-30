@@ -1,9 +1,9 @@
 from PIL import Image # type: ignore
 import numpy as np
+import shutil
 
-LOAD_IMG_WIDTH = 82
-LOAD_IMG_HEIGHT  = 50
-
+LOAD_IMG_WIDTH = shutil.get_terminal_size().columns + 2
+LOAD_IMG_HEIGHT  = int(LOAD_IMG_WIDTH * (5/8))
 
 BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype='int32')
 FORWARDSLASH_FILTER = np.array([[-1, -1, 3], [-1, 3, -1], [3, -1, -1]], dtype='int32')
@@ -64,7 +64,7 @@ def print_img(img_original):
 
 def main():
     # Loads image as 80 * 80 pixels and saves it in a numpy array
-    img_raw = Image.open('nike2.png')
+    img_raw = Image.open('github.png')
     img_raw = img_raw.resize((LOAD_IMG_WIDTH, LOAD_IMG_HEIGHT))
     img = np.array(img_raw)
 
@@ -74,9 +74,9 @@ def main():
     
     np.apply_along_axis(change_to_gray_scale, axis=2, arr=img)
 
-    print('*' * 80)
+    print('*' * shutil.get_terminal_size().columns)
     print_img(img)
-    print('*' * 80)
+    print('*' * shutil.get_terminal_size().columns)
     
 
 if __name__ == '__main__':
