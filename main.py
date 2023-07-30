@@ -20,16 +20,6 @@ FILTER_PAIRS = [
     (UNDERSCORE_FILTER, '_')
 ]
 
-# Loads image as 80 * 80 pixels and saves it in a numpy array
-img_raw = Image.open('mcdonalds.png')
-img_raw = img_raw.resize((LOAD_IMG_WIDTH, LOAD_IMG_HEIGHT))
-img = np.array(img_raw)
-print(img)
-
-# Removes alpha channel from an image if present
-if img_raw.mode == 'RGBA':
-    img = img[:,:,0:3]
-
 def change_to_gray_scale(pixel):
     # Gets each color value for the pixel passed in
     red = pixel[0]
@@ -43,9 +33,6 @@ def change_to_gray_scale(pixel):
     pixel[:] = int(gray_scale_value)
 
 def print_filter_output(input_data, filter):
-    multiplied_output = input_data * filter
-    output = np.sum(multiplied_output)
-
     min_filer_output = 150
     min_filer_string = ' '
 
@@ -60,16 +47,7 @@ def print_filter_output(input_data, filter):
 
     print(min_filer_string, end='')
 
-    # Checks that the output is within the range 0, 255 before returning
-    if output > 255:
-        return 255
-    elif output < 0:
-        return 0
-    else:
-        return output
-
-
-def apply_filters(img_original, img_output, filter):
+def print_img(img_original):
     for i in range(1, LOAD_IMG_HEIGHT - 1):
         for j in range(1, LOAD_IMG_WIDTH - 1):
             # Loads the pixel at location i, j and the along with the 8
@@ -80,30 +58,26 @@ def apply_filters(img_original, img_output, filter):
             input_data = input_data[:,:,0:1]
             input_data = input_data.reshape((3,3))
 
-            # intput_data = input_data.astype('int32')
-
-            # calculate the filter output
-            filter_output = print_filter_output(input_data, filter)
-            img_output[i - 1][j - 1] = filter_output
+            # print filter output
+            print_filter_output(input_data, filter)
 
 
-np.apply_along_axis(change_to_gray_scale, axis=2, arr=img)
+def main():
+    # Loads image as 80 * 80 pixels and saves it in a numpy array
+    img_raw = Image.open('nike2.png')
+    img_raw = img_raw.resize((LOAD_IMG_WIDTH, LOAD_IMG_HEIGHT))
+    img = np.array(img_raw)
 
-img_output = np.zeros((48, 80, 3), dtype='uint8')
+    # Removes alpha channel from an image if present
+    if img_raw.mode == 'RGBA':
+        img = img[:,:,0:3]
+    
+    np.apply_along_axis(change_to_gray_scale, axis=2, arr=img)
 
-print('*' * 80)
-# apply_filters(img, img_output, UNDERSCORE_FILTER)
-apply_filters(img, img_output, FORWARDSLASH_FILTER)
-# apply_filters(img, img_output, BACKSLASH_FILTER)
+    print('*' * 80)
+    print_img(img)
+    print('*' * 80)
+    
 
-
-# print(img_output)
-# print(img_output.shape)
-print('*' * 80)
-
-# image = Image.fromarray(np.uint8(img_output))
-image = Image.fromarray(np.uint8(img))
-
-# Save the image
-image.save('output_image.png')
-
+if __name__ == '__main__':
+    main()
