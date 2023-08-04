@@ -8,6 +8,7 @@ from PIL import Image  # type: ignore
 import numpy as np
 from numpy.typing import NDArray
 import shutil
+import argparse
 
 LOAD_IMG_WIDTH = shutil.get_terminal_size().columns + 2
 LOAD_IMG_HEIGHT = int(LOAD_IMG_WIDTH * (5 / 8))
@@ -89,7 +90,14 @@ def print_grayscale_img(img: NDArray[np.uint8]) -> None:
 
 def main() -> None:
     """Loads an image and prints it as ASCII characters to the console"""
-    img_raw = Image.open("example_image.png")
+    parser = argparse.ArgumentParser(
+                    prog='ProgramName',
+                    description='What the program does',
+                    epilog='Text at the bottom of help')
+    parser.add_argument("filename")
+    args = parser.parse_args()
+
+    img_raw = Image.open(args.filename)
     img_raw = img_raw.resize((LOAD_IMG_WIDTH, LOAD_IMG_HEIGHT))
     img: NDArray[np.uint8] = np.array(img_raw)
 
