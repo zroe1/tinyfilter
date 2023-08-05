@@ -1,6 +1,3 @@
-def hello_world():
-    print("Hello world")
-
 """Loads an image and prints it to the console as ASCII characters.
 
 This file applies convolution to an image to detect small features in an image
@@ -91,16 +88,21 @@ def print_grayscale_img(img: NDArray[np.uint8]) -> None:
             print_filter_output(img_region)
 
 
-def main() -> None:
+def tiny_print(img_filename=None) -> None:
     """Loads an image and prints it as ASCII characters to the console"""
-    parser = argparse.ArgumentParser(
-                    prog='ProgramName',
-                    description='What the program does',
-                    epilog='Text at the bottom of help')
-    parser.add_argument("filename")
-    args = parser.parse_args()
+    if img_filename == None:
+        parser = argparse.ArgumentParser(
+            prog="ProgramName",
+            description="What the program does",
+            epilog="Text at the bottom of help",
+        )
+        parser.add_argument("filename")
 
-    img_raw = Image.open(args.filename)
+        args = parser.parse_args()
+        img_raw = Image.open(args.filename)
+    else:
+        img_raw = Image.open(img_filename)
+
     img_raw = img_raw.resize((LOAD_IMG_WIDTH, LOAD_IMG_HEIGHT))
     img: NDArray[np.uint8] = np.array(img_raw)
 
@@ -116,4 +118,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    tiny_print()

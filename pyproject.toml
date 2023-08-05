@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tinyfilter"
-version = "0.0.2"
+version = "0.0.5"
 authors = [
   { name="Zephaniah Roe", email="zroe@uchicago.edu" },
 ]
@@ -26,4 +26,4 @@ dependencies = [
 "Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
 
 [project.scripts]
-tinyfilter = "tinyfilter:main"
+tinyfilter = "tinyfilter:tiny_print"
