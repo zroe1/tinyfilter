@@ -1,3 +1,6 @@
+def hello_world():
+    print("Hello world")
+
 """Loads an image and prints it to the console as ASCII characters.
 
 This file applies convolution to an image to detect small features in an image
