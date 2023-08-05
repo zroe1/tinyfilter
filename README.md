@@ -1,4 +1,4 @@
-# tiny-convolution
+# tinyfilter
 
 ## Resources and sources
 <ul>
