@@ -63,11 +63,14 @@ UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 4, 3]], dtype="int
 ```
 
 ## Resources and sources
+For more information about resources and their licenses, visit THANKS.txt under this repository.
+
 <ul>
   <li><b><a href="https://pillow.readthedocs.io/en/stable/about.html">Pillow</a></b> is a dependency for tinyfilter</li>
   <li><b><a href="https://numpy.org/">numpy</a></b> is a dependency for tinyfilter</li>
   <li><b><a href="https://github.com/python/mypy">mypy</a></b> was used for type checking</li>
   <li><b><a href="https://github.com/psf/black">Black</a></b> was used for python code formatting</li>
+  <li><b><a href="https://www.youtube.com/watch?v=NmLK_WQBxB4">This MIT lecutre</a></b> is a great resource for learning about CNNs and filters. I learned a lot from it and this project would not have been possible without it.</li>
 </ul>
 
 
