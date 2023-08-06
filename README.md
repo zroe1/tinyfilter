@@ -17,6 +17,12 @@ Then run
 
      tinyfilter image.png
 
+## Why tinyfilter wins
+
+<img width="829" alt="Screenshot 2023-08-05 at 7 53 28 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/75eb9d2b-c0e9-4c33-80c5-227fd9cc3a5e">
+
+While other python packages have features that tinyfilter doesn't yet support, tinyfilter clearly does win at one thing: recognizing the important features in an image and focusing on those. <b>In the example above tinyfilter and Ascii-magic bother print images that are 80 columns wide.</b> The difference is that tinyfilter's output is based on where there are edges in the image while Ascii-magic only focuses on where the image is dark and where is it bright.
+
 ## Resources and sources
 <ul>
   <li><b><a href="https://pillow.readthedocs.io/en/stable/about.html">Pillow</a></b> is a dependency for tinyfilter</li>
