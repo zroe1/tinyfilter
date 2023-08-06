@@ -52,6 +52,9 @@ UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 4, 3]], dtype="int
 
 The numbers at the top of the images show how many columns the output is in ASCII characters. The example shows how depite losing large amounts of detail as the image gets smaller, tinyfilter is able to retain important elements of the orginal.
 
+### Balloon dog (110 columns):
+<img width="729" alt="Screenshot 2023-08-05 at 10 02 38 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/3b3b4d4b-6d69-4bc5-af65-eddeaf900cc9">
+
 ## Resources and sources
 <ul>
   <li><b><a href="https://pillow.readthedocs.io/en/stable/about.html">Pillow</a></b> is a dependency for tinyfilter</li>
