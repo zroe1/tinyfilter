@@ -20,7 +20,7 @@ To print an image as ASCII characters using tinyfilter run the following command
 
 You can also import tinyfilter inside a python file or interpreter to do the same thing:
 
-```
+```python
 from tinyfilter import tiny_print
 tiny_print('image.png')
 ```
@@ -54,7 +54,7 @@ To make sense of the terms in this section you will need a little background on 
 
 The most important part of an image is the lines. Thats what tinyfilter detects using only 5 filters which I hardcoded as numpy arrays (shown below).  When the filters are applied to an image, tinyfiler calculates if the feature the filter is detecting for is present. If it is, tinyfilter prints the ASCII character that corresponds to the feature.
 
-```
+```python
 BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype="int32")
 FORWARDSLASH_FILTER = np.array([[-1, -1, 3], [-1, 3, -1], [3, -1, -1]], dtype="int32")
 VERTICAL_BAR_FILTER = np.array([[-1, 3, -1], [-1, 3, -1], [-1, 3, -1]], dtype="int32")
