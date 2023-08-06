@@ -2,18 +2,18 @@
 <img width="1423" alt="Screenshot 2023-08-05 at 4 52 21 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/488e61be-3431-444c-9fcc-8ae8944c8b59">
 </br></br>  
 
-tinyfilter [^1] is the computer vision equivalent to micrograd. It convert images into ASCII art using the principles of CNNs (convolutional neural networks).  
+tinyfilter [^1] is the computer vision equivalent to Andrej Karpathy's <a href="https://github.com/karpathy/micrograd">micrograd</a>. It convert images into ASCII art using the principles of CNNs (convolutional neural networks).  
 </br>
 Unlike other tools of its type, which map pixel darkness to an ASCII character, tinyfilter uses filters and convolution to detect features in an image and prints ASCII characters that correspond to them. This leads to much better results compared to other libraries for smaller images.
 
 [^1]: For consistency, the first letter in "tinyfilter" is always lowercase, even when it begins a sentence.
 
 ## Installation
-To install tinyfilter locally run the command below. When installing python packages such as tinyfilter, I recommend using a virtual environment.
+To install tinyfilter locally run the command below. When installing python packages such as tinyfilter, I recommend using a virtual environment, but this is optional.
 
     pip install tinyfilter
 
-## Usage
+## How to use tinyfilter
 To print an image as ASCII characters using tinyfilter run the following command in your terminal. (Replace "image.png" with the name of your image.)
 
      tinyfilter image.png
@@ -30,6 +30,20 @@ tiny_print('image.png')
 <img width="829" alt="Screenshot 2023-08-05 at 7 53 28 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/75eb9d2b-c0e9-4c33-80c5-227fd9cc3a5e">
 
 While other python packages have features that tinyfilter doesn't yet support, tinyfilter clearly does win at one thing: recognizing the important features in an image and focusing on those. <b>In the example above tinyfilter and Ascii-magic bother print images that are 80 columns wide.</b> The difference is that tinyfilter's output is based on where there are edges in the image while Ascii-magic only focuses on where the image is dark and where is it bright.
+
+## How tinyfilter works (it's simpler than you think)
+
+To make sense of the terms in this section you will need a little background on CNNs (convolutional neural networks). The design of tinyfilter is based on the technique these networks use called convolution. Reading the first half of <a href="https://www.ibm.com/topics/convolutional-neural-networks">this source</a> from IBM should get you up to speed. 
+
+The most important part of an image is the lines. Thats what tinyfilter detects using only 5 filters which I hardcoded as numpy arrays (shown below).  When the filters are applied to an image, tinyfiler calculates if the feature the filter is detecting for is present. If it is, tinyfilter prints the ASCII character that corresponds to the feature.
+
+```
+BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype="int32")
+FORWARDSLASH_FILTER = np.array([[-1, -1, 3], [-1, 3, -1], [3, -1, -1]], dtype="int32")
+VERTICAL_BAR_FILTER = np.array([[-1, 3, -1], [-1, 3, -1], [-1, 3, -1]], dtype="int32")
+HYPEN_FILTER = np.array([[-1, -1, -1], [3, 4, 3], [-1, -1, -1]], dtype="int32")
+UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 4, 3]], dtype="int32")
+```
 
 ## Resources and sources
 <ul>
