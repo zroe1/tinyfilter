@@ -4,18 +4,26 @@
 
 tinyfilter [^1] is the computer vision equivalent to micrograd. It convert images into ASCII art using the principles of CNNs (convolutional neural networks).  
 </br>
-Unlike other tools of its type, which map pixel darkness to an ASCII character, tinyfilter uses filters and convolution to detect features in an image and prints ASCII characters that correspond to them. This leads to much better results for smaller images.
+Unlike other tools of its type, which map pixel darkness to an ASCII character, tinyfilter uses filters and convolution to detect features in an image and prints ASCII characters that correspond to them. This leads to much better results compared to other libraries for smaller images.
 
 [^1]: For consistency, the first letter in "tinyfilter" is always lowercase, even when it begins a sentence.
 
-## Using tinyfilter
-First you will have to install tinyfilter locally. I recommend using a virtual environment before installing python packages like tinyfilter.  
+## Installation
+To install tinyfilter locally run the command below. When installing python packages such as tinyfilter, I recommend using a virtual environment.
 
     pip install tinyfilter
 
-Then run
+## Usage
+To print an image as ASCII characters using tinyfilter run the following command in your terminal. (Replace "image.png" with the name of your image.)
 
      tinyfilter image.png
+
+You can also import tinyfilter inside a python file or interpreter to do the same thing:
+
+```
+from tinyfilter import tiny_print
+tiny_print('image.png')
+```
 
 ## Why tinyfilter wins
 
