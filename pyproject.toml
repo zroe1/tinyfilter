@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tinyfilter"
-version = "0.1.0"
+version = "0.1.5"
 authors = [
   { name="Zephaniah Roe", email="zroe@uchicago.edu" },
 ]
-description = "An tiny filter..."
+description = "tinyfilter is the computer vision equivalent to micrograd. It convert images into ASCII art using the principles of CNNs (convolutional neural networks)."
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
@@ -22,8 +22,7 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/pypa/sampleproject"
-"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+"Homepage" = "https://github.com/zroe1/tinyfilter/tree/main"
 
 [project.scripts]
 tinyfilter = "tinyfilter:tiny_print"
