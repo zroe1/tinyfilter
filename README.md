@@ -24,6 +24,7 @@ You can also import tinyfilter inside a python file or interpreter to do the sam
 from tinyfilter import tiny_print
 tiny_print('image.png')
 ```
+<b>NOTE: You do not need to specify how many columns wide you want your image to be. tinyfilter automatically prints the image with the exact amount of columns wide your terminal window was at the time the function was called.</b>
 
 ## Why tinyfilter wins
 
@@ -44,6 +45,12 @@ VERTICAL_BAR_FILTER = np.array([[-1, 3, -1], [-1, 3, -1], [-1, 3, -1]], dtype="i
 HYPEN_FILTER = np.array([[-1, -1, -1], [3, 4, 3], [-1, -1, -1]], dtype="int32")
 UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 4, 3]], dtype="int32")
 ```
+
+## Examples of tinyfilter
+### Github logo:
+<img width="833" alt="Screenshot 2023-08-05 at 9 53 08 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/ae411367-1bd7-442e-a27e-6c2c31e69d5b">  
+
+The numbers at the top of the images show how many columns the output is in ASCII characters. The example shows how depite losing large amounts of detail as the image gets smaller, tinyfilter is able to retain important elements of the orginal.
 
 ## Resources and sources
 <ul>
