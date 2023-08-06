@@ -4,7 +4,7 @@
 
 tinyfilter [^1] is the computer vision equivalent to Andrej Karpathy's <a href="https://github.com/karpathy/micrograd">micrograd</a>. It convert images into ASCII art using the principles of CNNs (convolutional neural networks).  
 </br>
-Unlike other tools of its type, which map pixel darkness to an ASCII character, tinyfilter uses filters and convolution to detect features in an image and prints ASCII characters that correspond to them. This leads to much better results compared to other libraries for smaller images.
+Unlike other tools of its type, which map pixel darkness to an ASCII character, tinyfilter uses filters and convolution to detect features in an image and prints ASCII characters that correspond to them. This leads to much better results compared to other libraries, especially for smaller images.
 
 [^1]: For consistency, the first letter in "tinyfilter" is always lowercase, even when it begins a sentence.
 
@@ -54,6 +54,13 @@ The numbers at the top of the images show how many columns the output is in ASCI
 
 ### Balloon dog (110 columns):
 <img width="729" alt="Screenshot 2023-08-05 at 10 02 38 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/3b3b4d4b-6d69-4bc5-af65-eddeaf900cc9">
+
+The balloon dog is a good example of edge detection (notice tinyfilter doesn't print anything when the balloon is solid purple but prints a line when the image transfers to white).
+
+### Einstein (271 columns):
+<img width="740" alt="Screenshot 2023-08-05 at 10 14 57 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/fa33be16-8c10-43bc-b8cb-3e38bcf5e7ac">
+
+The Einstein image is a good example of how tinyfilter can scale to large images.
 
 ## Resources and sources
 <ul>
