@@ -32,20 +32,6 @@ tiny_print('image.png')
 
 While other python packages have features that tinyfilter doesn't yet support, tinyfilter clearly does win at one thing: recognizing the important features in an image and focusing on those. <b>In the example above tinyfilter and Ascii-magic bother print images that are 80 columns wide.</b> The difference is that tinyfilter's output is based on where there are edges in the image while Ascii-magic only focuses on where the image is dark and where is it bright.
 
-## How tinyfilter works (it's simpler than you think)
-
-To make sense of the terms in this section you will need a little background on CNNs (convolutional neural networks). The design of tinyfilter is based on the technique these networks use called convolution. Reading the first half of <a href="https://www.ibm.com/topics/convolutional-neural-networks">this source</a> from IBM should get you up to speed. 
-
-The most important part of an image is the lines. Thats what tinyfilter detects using only 5 filters which I hardcoded as numpy arrays (shown below).  When the filters are applied to an image, tinyfiler calculates if the feature the filter is detecting for is present. If it is, tinyfilter prints the ASCII character that corresponds to the feature.
-
-```
-BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype="int32")
-FORWARDSLASH_FILTER = np.array([[-1, -1, 3], [-1, 3, -1], [3, -1, -1]], dtype="int32")
-VERTICAL_BAR_FILTER = np.array([[-1, 3, -1], [-1, 3, -1], [-1, 3, -1]], dtype="int32")
-HYPEN_FILTER = np.array([[-1, -1, -1], [3, 4, 3], [-1, -1, -1]], dtype="int32")
-UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 4, 3]], dtype="int32")
-```
-
 ## Examples of tinyfilter
 ### Github logo:
 <img width="833" alt="Screenshot 2023-08-05 at 9 53 08 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/ae411367-1bd7-442e-a27e-6c2c31e69d5b">  
@@ -61,6 +47,20 @@ The balloon dog is a good example of edge detection (notice tinyfilter doesn't p
 <img width="740" alt="Screenshot 2023-08-05 at 10 14 57 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/fa33be16-8c10-43bc-b8cb-3e38bcf5e7ac">
 
 The Einstein image is a good example of how tinyfilter can scale to large images.
+
+## How tinyfilter works (it's simpler than you think)
+
+To make sense of the terms in this section you will need a little background on CNNs (convolutional neural networks). The design of tinyfilter is based on the technique these networks use called convolution. Reading the first half of <a href="https://www.ibm.com/topics/convolutional-neural-networks">this source</a> from IBM should get you up to speed. 
+
+The most important part of an image is the lines. Thats what tinyfilter detects using only 5 filters which I hardcoded as numpy arrays (shown below).  When the filters are applied to an image, tinyfiler calculates if the feature the filter is detecting for is present. If it is, tinyfilter prints the ASCII character that corresponds to the feature.
+
+```
+BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype="int32")
+FORWARDSLASH_FILTER = np.array([[-1, -1, 3], [-1, 3, -1], [3, -1, -1]], dtype="int32")
+VERTICAL_BAR_FILTER = np.array([[-1, 3, -1], [-1, 3, -1], [-1, 3, -1]], dtype="int32")
+HYPEN_FILTER = np.array([[-1, -1, -1], [3, 4, 3], [-1, -1, -1]], dtype="int32")
+UNDERSCORE_FILTER = np.array([[-1, -1, -1], [-1, -1, -1], [3, 4, 3]], dtype="int32")
+```
 
 ## Resources and sources
 <ul>
