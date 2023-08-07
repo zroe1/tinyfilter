@@ -11,7 +11,7 @@ import shutil
 import argparse
 
 LOAD_IMG_WIDTH = shutil.get_terminal_size().columns + 2
-LOAD_IMG_HEIGHT = int(LOAD_IMG_WIDTH * (5 / 8))
+load_img_height = 0
 
 # Filters applied to the image to detect features
 BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype="int32")
@@ -75,7 +75,7 @@ def print_grayscale_img(img: NDArray[np.uint8]) -> None:
     Args:
         img: a numpy array of grayscale pixels (shape = (x, x, 3))
     """
-    for i in range(1, LOAD_IMG_HEIGHT - 1):
+    for i in range(1, load_img_height - 1):
         for j in range(1, LOAD_IMG_WIDTH - 1):
             # Loads a 9 pixel region of the image
             img_region = img[i - 1 : i + 2, j - 1 : j + 2]
@@ -114,7 +114,14 @@ def tiny_print(img_filename=None) -> None:
     https://pillow.readthedocs.io/en/stable/handbook/concepts.html#concept-modes
         '''.format(img_raw.mode))
 
-    img_raw = img_raw.resize((LOAD_IMG_WIDTH, LOAD_IMG_HEIGHT))
+    # Loads image as NumPy array to derive the height
+    original_img = np.array(img_raw)
+
+    # Applys formula to calculate how many caracters high the output should be
+    global load_img_height
+    load_img_height = int(original_img.shape[0] * (LOAD_IMG_WIDTH / original_img.shape[1]) * (4/8))
+
+    img_raw = img_raw.resize((LOAD_IMG_WIDTH, load_img_height))
     img: NDArray[np.uint8] = np.array(img_raw)
 
     # Removes alpha channel from an image if present
