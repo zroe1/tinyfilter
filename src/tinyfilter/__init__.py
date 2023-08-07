@@ -93,8 +93,8 @@ def tiny_print(img_filename=None) -> None:
     if img_filename == None:
         parser = argparse.ArgumentParser(
             prog="tinyfilter",
-            description="What the program does",
-            epilog="Text at the bottom of help",
+            description="""tinyfilter converts images into ASCII art using filters.""",
+            epilog="For information about how to use tinfilter visit: https://github.com/zroe1/tinyfilter",
         )
         parser.add_argument("filename")
 
