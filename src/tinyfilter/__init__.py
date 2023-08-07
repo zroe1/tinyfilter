@@ -92,7 +92,7 @@ def tiny_print(img_filename=None) -> None:
     """Loads an image and prints it as ASCII characters to the console"""
     if img_filename == None:
         parser = argparse.ArgumentParser(
-            prog="ProgramName",
+            prog="tinyfilter",
             description="What the program does",
             epilog="Text at the bottom of help",
         )
@@ -102,6 +102,17 @@ def tiny_print(img_filename=None) -> None:
         img_raw = Image.open(args.filename)
     else:
         img_raw = Image.open(img_filename)
+
+    # checks if the image type is supported by tinyfilter
+    if img_raw.mode != "RGB" and img_raw.mode != "RGBA":
+        parser.error('''
+    
+    Image mode was {}. Currently tinyfilter only supports modes of "RGB" and 
+    "RGBA." To learn more about image modes visit the Pillow (a dependency 
+    of tinyfilter) documentation:
+
+    https://pillow.readthedocs.io/en/stable/handbook/concepts.html#concept-modes
+        '''.format(img_raw.mode))
 
     img_raw = img_raw.resize((LOAD_IMG_WIDTH, LOAD_IMG_HEIGHT))
     img: NDArray[np.uint8] = np.array(img_raw)

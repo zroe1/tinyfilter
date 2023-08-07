@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tinyfilter"
-version = "0.1.5"
+version = "0.1.6"
 authors = [
   { name="Zephaniah Roe", email="zroe@uchicago.edu" },
 ]
