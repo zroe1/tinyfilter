@@ -105,21 +105,27 @@ def tiny_print(img_filename=None) -> None:
 
     # checks if the image type is supported by tinyfilter
     if img_raw.mode != "RGB" and img_raw.mode != "RGBA":
-        parser.error('''
+        parser.error(
+            """
     
     Image mode was {}. Currently tinyfilter only supports modes of "RGB" and 
     "RGBA." To learn more about image modes visit the Pillow (a dependency 
     of tinyfilter) documentation:
 
     https://pillow.readthedocs.io/en/stable/handbook/concepts.html#concept-modes
-        '''.format(img_raw.mode))
+        """.format(
+                img_raw.mode
+            )
+        )
 
     # Loads image as NumPy array to derive the height
     original_img = np.array(img_raw)
 
     # Applys formula to calculate how many caracters high the output should be
     global load_img_height
-    load_img_height = int(original_img.shape[0] * (LOAD_IMG_WIDTH / original_img.shape[1]) * (4/8))
+    load_img_height = int(
+        original_img.shape[0] * (LOAD_IMG_WIDTH / original_img.shape[1]) * (4 / 8)
+    )
 
     img_raw = img_raw.resize((LOAD_IMG_WIDTH, load_img_height))
     img: NDArray[np.uint8] = np.array(img_raw)
