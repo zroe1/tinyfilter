@@ -7,7 +7,7 @@
 <a href="https://github.com/psf/black/tree/main"><img alt="link to license" src="https://img.shields.io/badge/code%20style-black-black"></a>
 </p> 
 
-tinyfilter [^1] is the computer vision equivalent to Andrej Karpathy's <a href="https://github.com/karpathy/micrograd">micrograd</a>. It convert images into ASCII art using the principles of CNNs (convolutional neural networks).  
+tinyfilter [^1] is the computer vision equivalent to Andrej Karpathy's <a href="https://github.com/karpathy/micrograd">micrograd</a>. It converts images into ASCII art using the principles of CNNs (convolutional neural networks).  
 </br>
 Unlike other tools of its type, which map pixel darkness to an ASCII character, tinyfilter uses filters and convolution to detect features in an image and prints ASCII characters that correspond to them. This leads to much better results compared to other libraries, especially for smaller images.
 
