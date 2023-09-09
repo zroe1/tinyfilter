@@ -41,7 +41,7 @@ While other python packages have features that tinyfilter doesn't yet support, t
 ### Github logo:
 <img width="833" alt="Screenshot 2023-08-05 at 9 53 08 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/ae411367-1bd7-442e-a27e-6c2c31e69d5b">  
 
-The numbers at the top of the images show how many columns the output is in ASCII characters. The example shows how depite losing large amounts of detail as the image gets smaller, tinyfilter is able to retain important elements of the orginal.
+The numbers at the top of the images show how many columns the output is in ASCII characters. The example shows how despite losing large amounts of detail as the image gets smaller, tinyfilter is able to retain important elements of the original.
 
 ### Balloon dog (110 columns):
 <img width="729" alt="Screenshot 2023-08-05 at 10 02 38 PM" src="https://github.com/zroe1/tinyfilter/assets/114773939/3b3b4d4b-6d69-4bc5-af65-eddeaf900cc9">
@@ -57,7 +57,7 @@ The Einstein image is a good example of how tinyfilter can scale to large images
 
 To make sense of the terms in this section you will need a little background on CNNs (convolutional neural networks). The design of tinyfilter is based on the technique these networks use called convolution. Reading the first half of <a href="https://www.ibm.com/topics/convolutional-neural-networks">this source</a> from IBM should get you up to speed. 
 
-The most important part of an image is the lines. Thats what tinyfilter detects using only 5 filters which I hardcoded as numpy arrays (shown below).  When the filters are applied to an image, tinyfiler calculates if the feature the filter is detecting for is present. If it is, tinyfilter prints the ASCII character that corresponds to the feature.
+The most important part of an image is the lines. Thats what tinyfilter detects using only 5 filters which I hard coded as numpy arrays (shown below).  When the filters are applied to an image, tinyfiler calculates if the feature the filter is detecting for is present. If it is, tinyfilter prints the ASCII character that corresponds to the feature.
 
 ```python
 BACKSLASH_FILTER = np.array([[3, -1, -1], [-1, 3, -1], [-1, -1, 3]], dtype="int32")
@@ -75,7 +75,7 @@ For more information about resources and their licenses, visit THANKS.txt under 
   <li><b><a href="https://numpy.org/">numpy</a></b> is a dependency for tinyfilter</li>
   <li><b><a href="https://github.com/python/mypy">mypy</a></b> was used for type checking</li>
   <li><b><a href="https://github.com/psf/black">Black</a></b> was used for python code formatting</li>
-  <li><b><a href="https://www.youtube.com/watch?v=NmLK_WQBxB4">This MIT lecutre</a></b> is a great resource for learning about CNNs and filters. I learned a lot from it and this project would not have been possible without it.</li>
+  <li><b><a href="https://www.youtube.com/watch?v=NmLK_WQBxB4">This MIT lecture</a></b> is a great resource for learning about CNNs and filters. I learned a lot from it and this project would not have been possible without it.</li>
 </ul>
 
 
